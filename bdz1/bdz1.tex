@@ -1,0 +1,293 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=3cm,right=3cm, top=3cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+
+\begin{document}
+	\begin{titlepage}
+		\centering
+		\huge {Уравнения математической физики \\ БДЗ-1} \\
+		\Large {Пономарев Александр ПМ-31} \\
+	\end{titlepage}
+	
+	\section{Найти общее решение однородного ДУЧП.}
+	\begin{center}
+		$ xU_x+2xU_y=0 $
+	\end{center}
+    Решение: \\
+	1. Тривиальное решение при $ x = 0 $: $ U(x, y) = \omega(y) $ \\
+	2. Решение при $ x \neq 0 $ : \\
+	Составим дифференциальное уравнение: \\
+	\begin{center}
+		$\frac{dx}{x}=\frac{dy}{2x}$ \\
+	\end{center}
+	Сокращаем $ x \neq 0 $ \\
+	\begin{center}
+		$ 2dx = dy $ \\
+	\end{center}
+	Интегрируем левую и правую часть \\
+	\begin{center}
+		$ 2x = y + \phi $ \\
+		$ \phi = 2x - y $
+	\end{center}
+	Тогда:
+	\begin{center}
+		$ U(x, y) = \omega(2x - y) $ \\
+	\end{center}
+	Окончательный ответ:
+	\begin{center}
+		\begin{equation*}
+			U(x, y) = 
+			 \begin{cases}
+			   \omega(y), &\text{$ x = 0 $}\\
+			   \omega(2x - y), &\text{$ x \neq 0 $}
+			 \end{cases}
+		\end{equation*}
+	\end{center}
+
+	\newpage
+
+	\section{Найти решение задачи Коши.}
+	\begin{center}
+		$ y^2 U_x + \frac{x^2}{y^2}U_y = 0 $
+	\end{center}
+	\begin{center}
+		$ x = t^5, y = t^3, U(x, y) = e^t $
+	\end{center}
+	Решение: \\
+	Составим дифференциальное уравнение: \\
+	\begin{center}
+		$\frac{dx}{y^2}=\frac{y^2dy}{x^2}$ \\
+	\end{center}
+	\begin{center}
+		$ x^2dx = y^4dy $
+	\end{center}
+	Интегрируем левую и правую часть \\
+	\begin{center}
+		$ \frac{x^3}{3} = \frac{y^5}{5} + \psi $
+	\end{center}
+	\begin{center}
+		$ \psi = \frac{x^3}{3} - \frac{y^5}{5} $
+	\end{center}
+	Общее решение: \\
+	\begin{center}
+		$ U(x, y) = \omega(\frac{x^3}{3} - \frac{y^5}{5}) $
+	\end{center}
+	Переходим к задаче Коши: \\
+	\begin{center}
+		$ g(x, y) = \frac{x^3}{3} - \frac{y^5}{5} $
+	\end{center}
+	\begin{center}
+		$ g(x(t), y(t)) = \frac{t^15}{3} - \frac{t^15}{5} = \frac{2t^15}{15} \Rightarrow t = \sqrt[15]{\frac{15g}{2}} $
+	\end{center}
+	\begin{center}
+		$ t = \sqrt[15]{\frac{15}{2} (\frac{x^3}{3} - \frac{y^5}{5})} $
+	\end{center}
+	Ответ:
+	\begin{center}
+		$ U(x, y) = exp[\sqrt[15]{\frac{15}{2} (\frac{x^3}{3} - \frac{y^5}{5})}] $
+	\end{center}
+
+	\newpage
+
+	\section{Найти общее решение квазилинейного уравнения.}
+	\begin{center}
+		$ \frac{1}{\sin(x)}U_x + \frac{2}{x^3}U_y = U $
+	\end{center}
+	Решение: \\
+	Составим дифференциальное уравнение: \\
+	\begin{center}
+		$ \sin(x)dx = \frac{x^3}{2}dy = \frac{dU}{U} $
+	\end{center}
+	1. \\
+	\begin{center}
+		$ \sin(x)dx = \frac{dU}{U} $
+	\end{center}
+	\begin{center}
+		$ -\cos(x) = \ln{ \lvert U \lvert} - \phi_1 $
+	\end{center}
+	\begin{center}
+		$ \phi_1 = \cos(x) + \ln{ \lvert U \lvert} $
+	\end{center}
+	2. \\
+	\begin{center}
+		$ \frac{x^3}{2}dy = \frac{dU}{U} $
+	\end{center}
+	\begin{center}
+		$ \frac{y x^3}{2} = \ln{ \lvert U \lvert} + \phi_2 $
+	\end{center}
+	\begin{center}
+		$ \phi_2 = \frac{y x^3}{2} - \ln{ \lvert U \lvert} $
+	\end{center}
+	Ответ:
+	\begin{center}
+		$ \psi(\frac{y x^3}{2} - \ln{ \lvert U \lvert}, \cos(x) + \ln{ \lvert U \lvert})  = 0$
+	\end{center}
+
+	\newpage
+
+	\section{Найти решение задачи Коши}
+	\begin{center}
+		$ 2 U_x + \frac{x^2}{y}U_y = U^2 + 1 $
+	\end{center}
+	\begin{center}
+		$ x = 4, y = 2t, U(x, y) = \sin(8t) $
+	\end{center}
+	Решение: \\
+	Составим дифференциальное уравнение: \\
+	\begin{center}
+		$ \frac{dx}{2}=\frac{ydy}{x^2} = \frac{dU}{U^2 + 1} $ \\
+	\end{center}
+	1. \\
+	\begin{center}
+		$ x^2dx = 2ydy $ \\
+	\end{center}
+	\begin{center}
+		$ \frac{x^3}{3} = y^2 + \phi_1 $ \\
+	\end{center}
+	\begin{center}
+		$ \phi_1 = \frac{x^3}{3} - y^2 $ \\
+	\end{center}
+	2. \\
+	\begin{center}
+		$ \frac{dx}{2} = \frac{dU}{U^2 + 1} $ \\
+	\end{center}
+	\begin{center}
+		$ \frac{x}{2} = \arctan(U) + \phi_2 $ \\
+	\end{center}
+	\begin{center}
+		$ \phi_2 = \frac{x}{2} - \arctan(U) $ \\
+	\end{center}
+	Общее решение: \\
+	\begin{center}
+		$ \psi(\frac{x^3}{3} - y^2, \frac{x}{2} - \arctan(U)) = 0 $ \\
+	\end{center}
+	Переходим к задаче Коши:
+	\begin{center}
+		$ \phi_1 = \frac{64}{3} - 4t^2 \Rightarrow t = \pm \sqrt{ (\frac{64}{3} - \phi_1) \frac{1}{4} } = \pm \sqrt{\frac{16}{3} - \frac{\phi_1}{4}} $ \\
+	\end{center}
+	\begin{center}
+		$ \phi_2 = 2 - \arctan(\sin(8t)) $ \\
+	\end{center}
+	\begin{center}
+		$ \phi_2 = 2 - \arctan(\sin(\pm 8\sqrt{\frac{16}{3} - \frac{\phi_1}{4}})) $ \\
+	\end{center}
+	Ответ:
+	\begin{center}
+		$ \psi = \phi_2 - 2 + \arctan(\sin(\pm 8\sqrt{\frac{16}{3} - \frac{\phi_1}{4}})) $ \\
+	\end{center}
+
+	\newpage
+
+	\section{\Large{Задание 5}}
+	Опеределить тип, привести к каноническому виду:\\
+	\begin{center}
+		$ 8U_x - U_y - 4U_{xx} - 3U_{xy} + 2U{yy} = 0 $
+	\end{center}
+	Найдем коэффициенты:\\
+	\begin{center}
+		$ a_1=8 \quad a_2=-1 \quad a_{11}=-4 \quad a_{12}=-\frac{3}{2} \quad a_{22}=2 $\\\vspace{3mm}
+		$ d = a_{12}^2 - a_{11}a_{22} = \frac{9}{4} + 8 = \frac{41}{4} > 0 $ \quad значит уравнение гиперболического типа
+	\end{center} 
+	\begin{center}
+		$ \frac{dy}{dx} = \frac{a_{12} \pm \sqrt{d}}{a_{11}} = \frac{3 \pm \sqrt{41}}{8} $
+	\end{center}
+	Оно эквивалентно сововкупности дифференциальных уравнений
+	\begin{center}
+		$\left[ 
+			\begin{gathered} 
+				y = \frac{3+\sqrt{41}}{8}x + c_1 \\ 
+				y = \frac{3-\sqrt{41}}{8}x + c_2 \\ 
+			\end{gathered} 
+			\right.$
+	\end{center}
+	\begin{center}
+		$\left[ 
+			\begin{gathered} 
+				c_1 = y - \frac{3+\sqrt{41}}{8}x \\ 
+				c_2 = y - \frac{3-\sqrt{41}}{8}x \\ 
+			\end{gathered} 
+			\right.$
+	\end{center}
+	\begin{center}
+		$\left[ 
+			\begin{gathered} 
+				n = \frac{3+\sqrt{41}}{8} \\ 
+				m = \frac{3-\sqrt{41}}{8} \\ 
+			\end{gathered} 
+			\right.$
+	\end{center}
+	Делаем замену переменных:
+	\begin{center}
+		\begin{equation*}
+			\begin{cases}
+				\xi = y - n x \\
+				\eta = y - m x
+			\end{cases}
+		\end{equation*}
+	\end{center}
+	Вычислим частные производные: \\
+	$\xi_x=-n, \quad\xi_y=1, \quad \eta_x=-m,\quad \eta_y=1$\\
+	Якобиан: \\ 
+	\begin{equation}
+		\begin{vmatrix}
+			\xi_x & \xi_y \\
+			\eta_x & \eta_y
+		\end{vmatrix}
+	    =
+		\begin{vmatrix}
+			-n & 1 \\
+			-m & 1
+		\end{vmatrix}
+		=
+		-n + m
+		\neq
+		0
+	\end{equation}
+	Все остальные частные производные второго порядка равны 0.\\
+	$ -4\;|U_{xx}=m^2U_{\xi\xi}+n^2U_{\eta\eta}+2mnU_{\xi\eta} $ \\
+	$ 2 \quad|U_{yy}=U_{\xi\xi}+U_{\eta\eta}+2U_{\xi\eta} $ \\
+	$ -3\;|U_{xy}=(-m)U_{\xi\xi}+(-n)U_{\eta\eta}+(-m-n)U_{\xi\eta} $ \\
+	$ 8 \quad|U_x=(-n)U_{\xi}+(-m)U_{\eta} $ \\
+	$-1\;|U_y=U_{\xi}+U_{\eta}$ \\
+	Получаем: \\
+	$ (-4 - \sqrt{41}) U_{\xi} + (-4 + \sqrt{41})U_{\eta} + \frac{25}{4}U_{\xi \eta} = 0 $ \\
+	Введем функцию для упрощения: \\
+	$U(\xi,\eta)=e^{\alpha\xi +\beta\eta}\upsilon(\xi,\eta)$\\
+	Тогда:\\
+	$U_{\xi}=e^{\alpha\xi +\beta\eta}(\alpha\upsilon+\upsilon_{\xi})$\\
+	$U_{\eta}=e^{\alpha\xi +\beta\eta}(\beta\upsilon+\upsilon_{\eta})$\\
+	$U_{\xi \eta}=e^{\alpha\xi +\beta\eta}(\alpha\beta\upsilon+\beta\upsilon_{\xi}+\alpha\upsilon_{\eta}+\upsilon_{\xi\eta})$\\
+	При подстановке получим:\\
+	$(-4 - \sqrt{41})(\alpha\upsilon+\upsilon_{\xi}) +(-4 + \sqrt{41})(\beta\upsilon+\upsilon_{\eta}) + \frac{25}{4}(\alpha\beta\upsilon+\beta\upsilon_{\xi}+\alpha\upsilon_{\eta}+\upsilon_{\xi\eta}) = 0 $ \\
+	Найдем $ \alpha , \beta: $ \\
+	$\alpha=\frac{4(4 - \sqrt{41})}{25}$
+	$\beta=\frac{4(4 + \sqrt{41})}{25}$\\
+	Подставив получим:\\
+	$ 4 \upsilon + \frac{25}{4}\upsilon_{\xi\eta} = 0 $\\\\
+	Ответ:
+	$ \upsilon + \frac{25}{16}\upsilon_{\xi\eta} = 0 $
+	
+	\newpage
+
+	\section{\Large{Задание 6}}
+	Опеределить тип, привести к каноническому виду:\\
+	\begin{center}
+		$ 8U_x + 4U_y - 4 U_{xx} + xyU_{xy} - 3U_{xy} + 2U{yy} = 0 $
+	\end{center}
+	Найдем коэффициенты: \\
+	\begin{center}
+		$ a_{11} = -4 \quad a_{12} = \frac{xy - 3}{2} \quad a_{22} = 2 $ \\
+		$ d=\frac{(xy-3)^2}{4} + 8 = \frac{(xy)^2 - 6xy + 41}{4} $ \\ 
+		$ D_{xy} = 36 - 164 < 0 \Rightarrow d > 0 \Rightarrow $ Гиперболический тип \\
+	\end{center}
+	найдем $ \frac{dy}{dx} $:
+	\begin{center}
+		$ \frac{dy}{dx} = \frac{a_{12} \pm \sqrt{d}}{a_{11}} = \frac{xy - 3 \pm \sqrt{(xy)^2 - 6xy + 41}}{-8} $ \\ 
+	\end{center} 
+	При любых значениях $ x $ и $ y $ уравнение будет иметь гиперболический тип, а дифференциальное уравнение не решается простыми способами.
+
+\end{document}

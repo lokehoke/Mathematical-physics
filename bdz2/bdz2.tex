@@ -1,0 +1,439 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[left=2cm,right=2cm, top=3cm, bottom=2cm, bindingoffset=0cm]{geometry}
+
+
+\begin{document}
+	\begin{titlepage}
+		\centering
+		\huge {Уравнения математической физики \\ БДЗ-2} \\
+		\Large {Пономарев Александр ПМ-31} \\
+	\end{titlepage}
+	
+    \section{Найти решение на бесконечной струне методом Даламбера}
+    \begin{center}
+        $ U_{tt} = 4U_{xx} + 4x $
+		\begin{equation*} 
+            \begin{cases}
+                U(x, 0) = 6x^3 + 5 \\
+                U_t(x, 0) = 7x^2+x+2 \\
+            \end{cases}
+		\end{equation*}
+	\end{center}
+    Решение:
+    \begin{center}
+        $ U(x, 0) = \phi(x) $ \\
+        $ U_t(x, 0) = \psi(x) $ \\
+	\end{center}
+    Формула Даламбера:
+    \begin{center}
+        $  U(x,t)={\frac {\phi (x+ct)+\phi (x-ct)}{2}}+{\frac {1}{2c}}  \int\limits_{x-ct}^{x+ct}\psi(\xi)d\xi + \frac{1}{2c}\int\limits_0^t \int\limits_{x-c(t-\tau)}^{x+c(t-\tau)}f(\tau, \xi)d\xi d\tau $ \\
+    \end{center}
+    Где:
+    \begin{center}
+        $ c = \sqrt{4} = 2 $ \\
+        $ \phi(x) = 6x^3+5 $ \\
+        $ \psi(x) = 7x^3+ x + 2 $ \\
+        $ f(x, t) = 4x $ \\
+    \end{center}
+    Подставим в формулу:
+    \begin{center}
+        $ U(x, t) = \frac{(6 (x + 2t)^3 + 5 + 6 (x - 2t)^3 + 5)}{2} + \frac{1}{4} \int\limits_{x-2t}^{x+2t} (7\xi^2 + \xi + 2) d\xi + \frac{1}{4} \int\limits_{0}^{t}\int\limits_{x+2(t-\tau)}^{x-2(t-\tau)} 4\xi d\xi d\tau $ \\
+        $ U(x, t) = 3(x^3+6x^2t + 12xt^2 + 8t^3) + 3(x^3 - 6x^2t + 12xt^2 - 8t^3) + 5 + ( \frac{7\xi^3}{3} + \frac{\xi^2}{2} + 2\xi ) {\Big|}_{x-2t}^{x+2t} + \frac{1}{4} \int\limits_0^t 2\xi^2 \Big|_{x-2(t-\tau)}^{x+2(t-\tau)} d\xi $ \\
+        $ U(x, t) = 6 x^3 + 72xt^2 + 5 + \frac{7}{3}(x+2t)^3 + \frac{(x+2t)^2}{2} + 2(x + 2t) - \frac{7}{3}(x-2t)^3 - \frac{(x-2t)^2}{2} - 2(x-2t) + \frac{1}{2}\int\limits_0^t((x + 2(t - \tau))^2 - (x - 2(t - \tau))^2)d\tau $ \\
+        $ U(x, t) = 6x^3 + 72xt^2 + 5 + 14x^2t + \frac{56}{3}t^3 + 2xt + 4t + 14x^2t + \frac{56}{3}t^3 + 2xt + 4t + \int\limits_0^t(4x(t - \tau))d\tau $ \\
+        $ U(x, t) = 6x^3 + 72xt^2 + 28x^2t + \frac{112}{3}t^3 + 4xt + 8t + 5 + 4x(t\tau - \frac{\tau^2}{2} \Big|_0^t) $ \\
+        $ U(x, t) = 6x^3 + 72xt^2 + 28x^2t + \frac{112}{3}t^3 + 4xt + 8t + 5 + 4x(t^2 - \frac{t^2}{2}) $ \\
+        $ U(x, t) = 6x^3 + 72xt^2 + 28x^2t + \frac{112}{3}t^3 + 4xt + 8t + 5 + 4x(t^2 - \frac{t^2}{2}) $ \\
+        $ U(x, t) = 6x^3 + 74xt^2 + 28x^2t + \frac{112}{3}t^3 + 4xt + 8t + 5  $ \\
+    \end{center}
+    Ответ:
+    \begin{center}
+        $ U(x, t) = 6x^3 + 74xt^2 + 28x^2t + \frac{112}{3}t^3 + 4xt + 8t + 5  $ \\
+    \end{center}
+
+    \newpage 
+
+    \section{Найти решение краевой задачи колебаний струны}
+    \begin{center}
+        $ U_{tt} = 9U_{xx} + 6 $ \\
+        \begin{equation*} 
+            \begin{cases}
+                U(x, 0) = x^2 \\
+                U_t(x, 0) = x^3 \\
+                U(0, t) = 0 \\
+                U(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Решение: \\
+    Разбиваем на 2 подзадачи: \\
+    1. Свободные колебания струны с закрепленными концами.
+    \begin{center}
+        $ U'_{tt} = 9U'_{xx} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                U'(x, 0) = x^2 = \phi(x) \\
+                U'_t(x, 0) = x^3 = \psi(x) \\
+                U'(0, t) = 0 \\
+                U'(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    2. Вынужденные колебания струны с закрепленными концами при ненулевых начальных условиях.
+    \begin{center}
+        $ U''_{tt} = 9U''_{xx} + 6 $ \\
+        \begin{equation*} 
+            \begin{cases}
+                U''(x, 0) = 0 \\
+                U''_t(x, 0) = 0 \\
+                U''(0, t) = 0 \\
+                U''(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Решаем 1 подзадачу: \\
+    \begin{center}
+        $ U'_{tt} = 9U'_{xx} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                U'(x, 0) = x^2 = \phi(x) \\
+                U'_t(x, 0) = x^3 = \psi(x) \\
+                U'(0, t) = 0 \\
+                U'(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+        $ c = \sqrt{9} = 3 $ \\ 
+    \end{center}
+    Будем искать решение в виде:
+    \begin{center}
+        $ \displaystyle U' = \sum_{n = 1}^{\infty}(A_n \cos \frac{3\pi n}{l}t + B_n \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x $ \\
+        $ A_n = \frac{2}{l} \int\limits_0^l \phi(x) \sin \frac{\pi n}{l}x dx $ \\
+        $ B_n = \frac{1}{\pi n} \int\limits_0^l \psi(x) \sin \frac{\pi n}{l}x dx $
+    \end{center}
+    Подставим функции и посчитаем коэфиценты $ A_n $ и $ B_n $. \\
+    $ A_n = \frac{2}{l} \int\limits_0^l x^2 \sin \frac{\pi n}{l}x dx = \left[
+        \begin{array}{ccc}
+        U=x^2 & dU=2xdx \\
+        dV=\sin\frac{\pi n}{l}xdx & V=-\frac{l}{\pi n}\cos\frac{\pi n}{l}x \\
+        \end{array}
+        \right] = \\
+        = \frac{2}{l}(-\frac{x^2 l}{\pi n}\cos\frac{\pi n}{l}x\big|_0^l + \int\limits_0^l \frac{2lx}{\pi n} \cos \frac{\pi n}{l}x dx ) = \\
+        = - \frac{2l^2}{\pi n}\cos \pi n + \int\limits_0^l \frac{4x}{\pi n} \cos \frac{\pi n}{l}x dx  = \\
+        = \left[
+            \begin{array}{ccc}
+            U=x & dU=dx \\
+            dV=\cos\frac{\pi n}{l}xdx & V=\frac{l}{\pi n}\sin\frac{\pi n}{l}x \\
+            \end{array}
+            \right] = \\
+        = - \frac{2l^2}{\pi n}\cos \pi n + \frac{4}{\pi n}(\frac{xl}{\pi n}\sin\frac{\pi n}{l}x \Big|_0^l - \frac{l}{\pi n} \int\limits_0^l \sin \frac{\pi n}{l}x dx ) = \\
+        = - \frac{2l^2}{\pi n}\cos \pi n - \frac{4l}{\pi^2 n^2} \int\limits_0^l \sin \frac{\pi n}{l}x dx = \\
+        = - \frac{2l^2}{\pi n}\cos \pi n + \frac{4l^2}{\pi^3 n^3}\cos \frac{\pi n}{l}x \Big|_0^l = \\
+        = - \frac{2l^2}{\pi n}\cos \pi n + \frac{4l^2}{\pi^3 n^3}\cos \pi n + \frac{4l^2}{\pi^3 n^3} \\
+        $ \\
+    $ B_n = \frac{1}{\pi n} \int\limits_0^l x^3 \sin \frac{\pi n}{l}x dx = \\ = \left[
+        \begin{array}{ccc}
+        U=x^3 & dU=3x^2dx \\
+        dV=\sin\frac{\pi n}{l}xdx & V=-\frac{l}{\pi n}\cos\frac{\pi n}{l}x \\
+        \end{array}
+        \right] = \\ 
+    = \frac{1}{\pi n} ( -\frac{x^3 l}{\pi n}\cos\frac{\pi n}{l}x\big|_0^l + \int\limits_0^l \frac{3lx^2}{\pi n} \cos \frac{\pi n}{l}x dx ) = \\
+    = - \frac{l^4}{\pi^2 n^2}\cos \pi n + \frac{3l}{\pi^2 n^2} \int\limits_0^l x^2 \cos \frac{\pi n}{l}x dx = \\
+    = \left[
+        \begin{array}{ccc}
+        U=x^2 & dU=2xdx \\
+        dV=\cos\frac{\pi n}{l}xdx & V=\frac{l}{\pi n}\sin\frac{\pi n}{l}x \\
+        \end{array}
+        \right] = \\
+    = - \frac{l^4}{\pi^2 n^2}\cos \pi n + \frac{3l}{\pi^2 n^2}(\frac{x^2 l}{\pi n}\sin \frac{\pi n}{l} x \Big|_0^l - \int\limits_0^l x \sin \frac{\pi n}{l}x dx )
+    = \\ \left[
+        \begin{array}{ccc}
+        U=x & dU=dx \\
+        dV=\sin\frac{\pi n}{l}xdx & V=-\frac{l}{\pi n}\cos\frac{\pi n}{l}x \\
+        \end{array}
+        \right] = \\
+    = - \frac{l^4}{\pi^2 n^2}\cos \pi n + \frac{6l^2}{\pi^3 n^3}(\frac{lx}{\pi n}\cos\frac{\pi n}{l} \Big|_0^l - \frac{l}{\pi n} \int\limits_0^l \cos \frac{\pi n}{l}x dx) = \\
+    = - \frac{l^4}{\pi^2 n^2}\cos \pi n + \frac{6 l^4}{\pi^4 n^4}\cos \pi n
+    $ \\
+    Подставим : \\
+    \begin{center}
+        $ \displaystyle U' = \sum_{n = 1}^{\infty}((- \frac{2l^2}{\pi n}\cos \pi n + \frac{4l^2}{\pi^3 n^3}\cos \pi n + \frac{4l^2}{\pi^3 n^3}) \cos \frac{3\pi n}{l}t + (- \frac{l^4}{\pi^2 n^2}\cos \pi n + \frac{6 l^4}{\pi^4 n^4}\cos \pi n) \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x $ \\
+    \end{center}
+    Решаем 2 подзадачу: \\
+    \begin{center}
+        $ U''_{tt} = 9U''_{xx} + 6 $ \\
+        \begin{equation*} 
+            \begin{cases}
+                U''(x, 0) = 0 \\
+                U''_t(x, 0) = 0 \\
+                U''(0, t) = 0 \\
+                U''(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+        $ c = \sqrt{9} = 3 $ \\ 
+        $ f = 6 $ \\ 
+    \end{center}
+    Будем искать решение в виде:
+    \begin{center}
+        $ \displaystyle U'' = \frac{l}{3 \pi} \sum_{n = 1}^{\infty}\frac{1}{n} \big[ \int\limits_0^t F_n(\tau) \sin \frac{3 \pi n}{l} (t - \tau) d\tau \big] \sin \frac{\pi n}{l}x$ \\
+    \end{center}
+    $
+    F_n = \frac{2}{l} \int\limits_0^l 6 \sin \frac{\pi n}{l}x dx
+    = - \frac{12}{\pi n} \cos \frac{\pi n}{l} x \Big|_0^l
+    = - \frac{12}{\pi n} + \frac{12}{\pi n}
+    $ \\
+    Подставим:
+    $ \displaystyle U''
+    = \frac{l}{3 \pi} \sum_{n = 1}^{\infty}\frac{1}{n} \big[ \int\limits_0^t (- \frac{12}{\pi n} + \frac{12}{\pi n}) \sin \frac{3 \pi n}{l} (t - \tau) d\tau \big] \sin \frac{\pi n}{l}x = \\
+    = \frac{4l}{\pi^2} \sum_{n = 1}^{\infty}\frac{1}{n^2} ( 1 - \cos \pi n ) ( \frac{l}{3 \pi n} \cos \frac{3 \pi n}{l} (t - \tau) \big|_0^t )  \sin \frac{\pi n}{l}x = \\
+    = \frac{4l}{\pi^2} \sum_{n = 1}^{\infty}\frac{1}{n^2} ( 1 - \cos \pi n ) \sin \frac{\pi n}{l}x ( \frac{l}{3 \pi n} \cos \frac{3 \pi n}{l} t + \frac{l}{3 \pi n} ) = \\
+    = \frac{4l^2}{3\pi^3} \sum_{n = 1}^{\infty}\frac{1}{n^3} ( 1 - \cos \pi n ) \sin \frac{\pi n}{l}x ( \cos \frac{3 \pi n}{l} t + 1 ) 
+    $ \\
+
+    Тогда решение:
+    \begin{center}
+        $ U(x, t) = U' + U'' $ \\
+        $ \displaystyle U(x, t) = \sum_{n = 1}^{\infty}((- \frac{2l^2}{\pi n}\cos \pi n + \frac{4l^2}{\pi^3 n^3}\cos \pi n + \frac{4l^2}{\pi^3 n^3}) \cos \frac{3\pi n}{l}t + (- \frac{l^4}{\pi^2 n^2}\cos \pi n + \frac{6 l^4}{\pi^4 n^4}\cos \pi n) \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x  + \sum_{n = 1}^{\infty}\frac{1}{n^3} ( 1 - \cos \pi n ) \sin \frac{\pi n}{l}x ( \cos \frac{3 \pi n}{l} t + 1 )  $
+    \end{center}
+    Ответ: $ \displaystyle U(x, t) = \sum_{n = 1}^{\infty}((- \frac{2l^2}{\pi n}\cos \pi n + \frac{4l^2}{\pi^3 n^3}\cos \pi n + \frac{4l^2}{\pi^3 n^3}) \cos \frac{3\pi n}{l}t + (- \frac{l^4}{\pi^2 n^2}\cos \pi n + \frac{6 l^4}{\pi^4 n^4}\cos \pi n) \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x + \sum_{n = 1}^{\infty}\frac{1}{n^3} ( 1 - \cos \pi n ) \sin \frac{\pi n}{l}x ( \cos \frac{3 \pi n}{l} t + 1 )  $
+
+    \newpage
+
+    \section{Найти решение краевой задачи колебаний струны}
+    \begin{center}
+        $ U_{tt} = 9U_{xx} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                U(x, 0) = 0 \\
+                U_t(x, 0) = 0 \\
+                U(0, t) = 7 t + 10 = \mu(t) \\
+                U(l, t) = e^{-t} = \nu(t) \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Решение: \\
+    Введем функцию $ W(x, t) = \mu(t) + \frac{x}{l}[\mu(t) - \mu(t)] $ \\
+    Будем искать решение в виде $ U(x, t) = y(x, t) + W(x, t) $ \\
+    $ U(x, t)
+    = y(x, t) + \mu(t) + \frac{x}{l}[\mu(t) - \mu(t)]
+    = y(x, t) + 7 t + 10 + \frac{x}{l}( e^{-t} - 7 t - 10)
+    = y(x, t) + 7t + 10 + \frac{x e^{-t}}{l} - \frac{ 7tx }{l} + \frac{ 10x }{l}
+    $ \\
+    $ U_{xx} = y_{xx} $ \\
+    $ U_{tt} = y_{tt} + \frac{x e^{-t}}{l} $ \\
+    Получаем новое уравнение: \\
+    $ y_{tt} = 9y_{xx} - \frac{x e^{-t}}{l} $ \\
+    И получаем: \\
+    $
+        y(x, t) = U(x, t) - 7t - 10 - \frac{x e^{-t}}{l} + \frac{7tx}{l} + \frac{10x}{l} \\
+        y_t(x, t) = U_t(x, t) - 7 + \frac{x e^{-t}}{l} + \frac{7x}{l}
+    $ \\
+    Тогда перейдем к новому уравнению с новыми условиями: \\
+    \begin{center}
+        $ y_{tt} = 9y_{xx} - \frac{x e^{-t}}{l} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                y(x, 0) = \frac{9x}{l} - 10 = \Bar{\phi}(x) \\
+                y_t(x, 0) = \frac{8x}{l} - 7 = \Bar{\psi}(x) \\
+                y(0, t) = 0 \\
+                y(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Разбиваем на 2 подзадачи: \\
+    1. Свободные колебания струны с закрепленными концами.
+    \begin{center}
+        $ y'_{tt} = 9y'_{xx} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                y'(x, 0) =  \frac{9x}{l} - 10 = \Bar{\phi}(x) \\
+                y'_t(x, 0) = \frac{8x}{l} - 7 = \Bar{\psi}(x) \\
+                y'(0, t) = 0 \\
+                y'(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    2. Вынужденные колебания струны с закрепленными концами при ненулевых начальных условиях.
+    \begin{center}
+        $ y''_{tt} = 9y''_{xx} - \frac{xe^{-t}}{l} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                y''(x, 0) = 0 \\
+                y''_t(x, 0) = 0 \\
+                y''(0, t) = 0 \\
+                y''(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Решаем 1 подзадачу: \\
+    \begin{center}
+        $ y'_{tt} = 9y'_{xx} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                y'(x, 0) =  \frac{9x}{l} - 10 = \Bar{\phi}(x) \\
+                y'_t(x, 0) = \frac{8x}{l} - 7 = \Bar{\psi}(x) \\
+                y'(0, t) = 0 \\
+                y'(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+        $ c = \sqrt{9} = 3 $ \\ 
+    \end{center}
+    Будем искать решение в виде:
+    \begin{center}
+        $ \displaystyle y' = \sum_{n = 1}^{\infty}(A_n \cos \frac{3\pi n}{l}t + B_n \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x $ \\
+        $ A_n = \frac{2}{l} \int\limits_0^l \Bar{\phi}(x) \sin \frac{\pi n}{l}x dx $ \\
+        $ B_n = \frac{1}{\pi n} \int\limits_0^l \Bar{\psi}(x) \sin \frac{\pi n}{l}x dx $
+    \end{center}
+    Подставим функции и посчитаем коэфиценты $ A_n $ и $ B_n $. \\
+    $
+    A_n = \frac{2}{l} \int\limits_0^l \Bar{\phi}(x) \sin \frac{\pi n}{l}x dx = \\
+    = \frac{2}{l} \int\limits_0^l (\frac{9x}{l} - 10) \sin \frac{\pi n}{l}x dx = \\
+    = \frac{18}{l^2} \int\limits_0^l x \sin \frac{\pi n}{l}x dx - \frac{20}{l} \int\limits_0^l \sin \frac{\pi n}{l}x dx = \\
+    = \ \left[
+        \begin{array}{ccc}
+        U=x & dU=dx \\
+        dV=\sin\frac{\pi n}{l}xdx & V=-\frac{l}{\pi n}\cos\frac{\pi n}{l}x \\
+        \end{array}
+        \right] = \\
+    = \frac{18}{l^2} ( \frac{lx}{\pi n} \cos\frac{\pi n}{l}x \Big|_0^l + \frac{l}{\pi n} \int\limits_0^l \cos \frac{\pi n}{l}x dx ) + \frac{20}{\pi n} \cos \frac{\pi n}{l}x \Big|_0^l
+    = \frac{2}{\pi n} \cos \pi n - \frac{20}{\pi n}
+    $ \\
+    $
+    B_n = \frac{1}{\pi n} \int\limits_0^l \Bar{\psi}(x) \sin \frac{\pi n}{l}x dx = \\
+    = \frac{1}{\pi n} \int\limits_0^l (\frac{8x}{l} - 7) \sin \frac{\pi n}{l}x dx = \\
+    = \frac{8}{\pi n l} \int\limits_0^l x \sin \frac{\pi n}{l}x dx - \frac{7}{\pi n} \int\limits_0^l \sin \frac{\pi n}{l}x dx = \\
+    = \ \left[
+        \begin{array}{ccc}
+        U=x & dU=dx \\
+        dV=\sin\frac{\pi n}{l}xdx & V=-\frac{l}{\pi n}\cos\frac{\pi n}{l}x \\
+        \end{array}
+        \right] = \\
+    = \frac{8}{\pi n l} ( \frac{lx}{\pi n} \cos\frac{\pi n}{l}x \Big|_0^l + \frac{l}{\pi n} \int\limits_0^l \cos \frac{\pi n}{l}x dx ) + \frac{7l}{\pi^2 n^2} \cos \frac{\pi n}{l}x \Big|_0^l
+    = \frac{l}{\pi^2 n^2} \cos \pi n - \frac{7l}{\pi^2 n^2}
+    $ \\
+    Подставим : \\
+    \begin{center}
+        $ \displaystyle y' = \sum_{n = 1}^{\infty}((\frac{2}{\pi n} \cos \pi n - \frac{20}{\pi n}) \cos \frac{3\pi n}{l}t + (\frac{l}{\pi^2 n^2} \cos \pi n - \frac{7l}{\pi^2 n^2}) \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x $ \\
+    \end{center}
+    Решаем 2 подзадачу: \\
+    \begin{center}
+        $ y''_{tt} = 9y''_{xx} - \frac{xe^{-t}}{l} $ \\
+        \begin{equation*} 
+            \begin{cases}
+                y''(x, 0) = 0 \\
+                y''_t(x, 0) = 0 \\
+                y''(0, t) = 0 \\
+                y''(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Будем искать решение в виде:
+    \begin{center}
+        $ \displaystyle y'' = \frac{l}{3 \pi} \sum_{n = 1}^{\infty}\frac{1}{n} \big[ \int\limits_0^t F_n(\tau) \sin \frac{3 \pi n}{l} (t - \tau) d\tau \big] \sin \frac{\pi n}{l}x$ \\
+    \end{center}
+    $
+    F_n(t) = \frac{2}{l} \int\limits_0^l (- \frac{xe^{-t}}{l}) \sin \frac{\pi n}{l}x dx = \\
+    = -\frac{2e^{-t}}{l^2} \int\limits_0^l x \sin \frac{\pi n}{l}x dx = \\
+    = \left[
+        \begin{array}{ccc}
+        U=x & dU=dx \\
+        dV=\sin\frac{\pi n}{l}xdx & V=-\frac{l}{\pi n}\cos\frac{\pi n}{l}x \\
+        \end{array}
+        \right] = \\
+    = -\frac{2e^{-t}}{l^2} ( \frac{lx}{\pi n} \cos\frac{\pi n}{l}x \Big|_0^l + \frac{l}{\pi n} \int\limits_0^l \cos \frac{\pi n}{l}x dx )
+    = \frac{2 e^{-t}}{\pi n} cos(\pi n)
+    $ \\
+    Подставим:
+    $ \displaystyle y''
+    = \frac{l}{3 \pi} \sum_{n = 1}^{\infty}\frac{1}{n} \big[ \int\limits_0^t (\frac{2 e^{-\tau}}{\pi n} cos(\pi n)) \sin \frac{3 \pi n}{l} (t - \tau) d\tau \big] \sin \frac{\pi n}{l}x = \\
+    = \frac{l}{3 \pi} \sum_{n = 1}^{\infty}\frac{1}{n} \frac{2\cos\left(\pi n\right)\left(l^2\sin\left(\frac{3\pi nt}{l}\right)+ln{\mathrm{e}}^{-t}\left(3\pi -3\pi {\mathrm{e}}^t\cos\left(\frac{3\pi nt}{l}\right)\right)\right)}{n\pi \left(l^2+9\pi ^2n^2\right)} \sin \frac{\pi n}{l}x
+    $ \\
+    Тогда решение для $ y $:
+    \begin{center}
+        $ y(x, t) = y' + y'' $ \\
+        $ \displaystyle y(x, t) = \sum_{n = 1}^{\infty}((\frac{2}{\pi n} \cos \pi n - \frac{20}{\pi n}) \cos \frac{3\pi n}{l}t + (\frac{l}{\pi^2 n^2} \cos \pi n - \frac{7l}{\pi^2 n^2}) \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x + \frac{l}{3 \pi} \sum_{n = 1}^{\infty}\frac{1}{n} \frac{2\cos\left(\pi n\right)\left(l^2\sin\left(\frac{3\pi nt}{l}\right)+ln{\mathrm{e}}^{-t}\left(3\pi -3\pi {\mathrm{e}}^t\cos\left(\frac{3\pi nt}{l}\right)\right)\right)}{n\pi \left(l^2+9\pi ^2n^2\right)} \sin \frac{\pi n}{l}x $
+    \end{center}
+    Вернемся к $ U(x, t) $ \\
+    \begin{center}
+        $ U(x, t) = y(x, t) + 7t + 10 + \frac{x e^{-t}}{l} - \frac{ 7tx }{l} + \frac{ 10x }{l} $ \\
+    \end{center}
+    Подставим $ y(x, t) $ и Получим ответ: \\
+    \begin{center}
+        $ \displaystyle U(x, t) = \sum_{n = 1}^{\infty}((\frac{2}{\pi n} \cos \pi n - \frac{20}{\pi n}) \cos \frac{3\pi n}{l}t + (\frac{l}{\pi^2 n^2} \cos \pi n - \frac{7l}{\pi^2 n^2}) \sin \frac{3\pi n}{l}t) \sin \frac{3\pi n}{l}x + \frac{l}{3 \pi} \sum_{n = 1}^{\infty}\frac{1}{n} \frac{2\cos\left(\pi n\right)\left(l^2\sin\left(\frac{3\pi nt}{l}\right)+ln{\mathrm{e}}^{-t}\left(3\pi -3\pi {\mathrm{e}}^t\cos\left(\frac{3\pi nt}{l}\right)\right)\right)}{n\pi \left(l^2+9\pi ^2n^2\right)} \sin \frac{\pi n}{l}x + 7t + 10 + \frac{x e^{-t}}{l} - \frac{ 7tx }{l} + \frac{ 10x }{l} $ \\
+    \end{center}
+
+    \newpage
+
+    \section{Найти решение краевой задачи колебаний струны}
+    \begin{center}
+        $ U_{t} = 16U_{xx} + t^2 \cos x $ \\
+        \begin{equation*}
+            \begin{cases}
+                U(x, 0) = e^{x(l-x)} - 1 = \phi(x) \\
+                U(0, t) = 0  \\
+                U(l, t) = 0  \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Решение: \\
+    \begin{center}
+        $ c = \sqrt{16} = 4 $ \\
+        $ f(x, t) = t^2 \cos x $ \\
+    \end{center}
+    Разбиваем на 2 подзадачи: \\
+    1.
+    \begin{center}
+        $ U'_{t} = 16U'_{xx} $ \\
+        \begin{equation*}
+            \begin{cases}
+                U'(x, 0) = e^{x(l-x)} - 1 = \phi(x) \\
+                U'(0, t) = 0 \\
+                U'(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Будем искать решение в виде: \\
+    \begin{center}
+        $ U'(x, t)=\sum \limits _{{n=1}}^{\infty }C_{n}\sin \left({\frac  {\pi n}{l}}x\right)\exp \left(-\left({\frac  {4 \pi n}{l}}\right)^{2}t\right). $ \\
+        $ {\begin{array}{l} C_{n}={\dfrac  {2}{l}}\displaystyle \int \limits _{0}^{l} (e^{\xi(l-\xi)} - 1)  \sin {\dfrac  {\pi n}{l}}\xi \,d\xi .\end{array}} $
+    \end{center}
+    $ c_n $ неберущийся интеграл тогда запишем $ U'(x, t) $ : \\
+    \begin{center}
+        $ U'(x, t)=\sum \limits _{{n=1}}^{\infty }( {\dfrac  {2}{l}}\displaystyle \int \limits _{0}^{l} (e^{\xi(l-\xi)} - 1)  \sin {\dfrac  {\pi n}{l}}\xi \,d\xi )\sin \left({\frac  {\pi n}{l}}x\right)\exp \left(-\left({\frac  {4 \pi n}{l}}\right)^{2}t\right) $ \\
+    \end{center}
+    2.
+    \begin{center}
+        $ U''_{t} = 16U''_{xx} + t^2 cos(x) $ \\
+        \begin{equation*}
+            \begin{cases}
+                U''(x, 0) = 0 \\
+                U''(0, t) = 0 \\
+                U''(l, t) = 0 \\
+            \end{cases}
+		\end{equation*}
+    \end{center}
+    Будем искать решение в виде: \\
+    \begin{center}
+        $ U''(x, t) = {\displaystyle u(x,\;t)=\sum \limits _{n=1}^{\infty }\left[\int \limits _{0}^{t}\exp \left(-\left({\frac {\pi na}{l}}\right)^{2}(t-\tau )\right) F_{n}(t) d \tau \right]\sin \left({\frac {\pi n}{l}}x\right)} $ \\
+        $ F_{n}(t) = {\frac  {2}{l}}\int \limits _{0}^{l}f(\xi ,\;t)\sin \left({\frac  {\pi n}{l}}\xi \right)\,d\xi $ 
+    \end{center}
+    Найдем $ F_n $: \\
+    $ F_{n}(t) = {\frac  {2}{l}}\int \limits _{0}^{l}f(\xi ,t)\sin \left({\frac  {\pi n}{l}}\xi \right) d\xi
+    = {\frac  {2}{l}}\int \limits _{0}^{l} t^2 cos(x) \sin \left({\frac  {\pi n}{l}}\xi \right) d\xi
+    = \frac{2 t^2 \pi n}{\pi^2 n^2 - 1 }( 1 - \cos l \cos \pi n )
+    $ \\
+    Подставим $ F_n $ в $ U''(x, t)  $ \\
+    $
+    U''(x, t) = {\displaystyle u(x, t)=\sum \limits _{n=1}^{\infty }\left[\int \limits _{0}^{t}\exp \left(-\left({\frac {\pi n 4}{l}}\right)^{2}(t-\tau )\right) \frac{2 t^2 \pi n}{\pi^2 n^2 - 1 }( 1 - \cos l \cos \pi n ) d \tau \right]\sin \left({\frac {\pi n}{l}}x\right)} \\
+    = {\displaystyle \sum \limits _{n=1}^{\infty } \frac{2 t^2 \pi n}{\pi^2 n^2 - 1 }( 1 - \cos l \cos \pi n ) ( \frac{l^2}{16 \pi^2 n^2}( \exp(\frac{-4 \pi n}{l}+ \frac{2 n \pi t}{l} - 1) ) ) \sin \left({\frac {\pi n}{l}}x\right)}
+    $ \\
+    Вернемся к $ U(x, t) = U'(x, t) + U''(x, t) $ \\
+    Подставим и получаем ответ: \\
+    \begin{center}
+        $ U(x, t) = \sum \limits _{{n=1}}^{\infty }( {\dfrac  {2}{l}}\displaystyle \int \limits _{0}^{l} (e^{\xi(l-\xi)} - 1)  \sin {\dfrac  {\pi n}{l}}\xi \,d\xi )\sin \left({\frac  {\pi n}{l}}x\right)\exp \left(-\left({\frac  {4 \pi n}{l}}\right)^{2}t\right) + {\displaystyle \sum \limits _{n=1}^{\infty } \frac{2 t^2 \pi n}{\pi^2 n^2 - 1 }( 1 - \cos l \cos \pi n ) ( \frac{l^2}{16 \pi^2 n^2}( \exp(\frac{-4 \pi n}{l}+ \frac{2 n \pi t}{l} - 1) ) ) \sin \left({\frac {\pi n}{l}}x\right)} $
+    \end{center}
+
+\end{document}
