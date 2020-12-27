@@ -1,1 +1,0 @@
-syms sx, sy

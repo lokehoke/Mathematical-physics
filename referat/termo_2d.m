@@ -71,58 +71,59 @@ function[x, y, t, T] = termo_2d(
             b(n*m*(l-1)+m*(n-1)+j) = G2(y(j));
             a(n*m*(l-1)+m*(n-1)+j, n*m*(l-1)+m*(n-1)+j) = 1/dx;
             a(n*m*(l-1)+m*(n-1)+j, n*m*(l-1)+m*(n-2)+j) = -1/dx;
-    end
+        end
     
-    for (i = 2:n-1)
-        b(n*m*(l-1)+m*(i-1)+1) = G3(x(i));
-        a(n*m*(l-1)+m*(i-1)+1, n*m*(l-1)+m*(i-1)+1) = -1/dy;
-        a(n*m*(l-1)+m*(i-1)+1, n*m*(l-1)+m*(i-1)+2) = 1/dy;
-        
-        b(n*m*(l-1)+m*(i-1)+m) = G4(x(i));
-        a(n*m*(l-1)+m*(i-1)+m, n*m*(l-1)+m*(i-1)+m) = 1/dy;
-        a(n*m*(l-1)+m*(i-1)+m, n*m*(l-1)+m*(i-1)+m-1) = -1/dy;
+        for (i = 2:n-1)
+            b(n*m*(l-1)+m*(i-1)+1) = G3(x(i));
+            a(n*m*(l-1)+m*(i-1)+1, n*m*(l-1)+m*(i-1)+1) = -1/dy;
+            a(n*m*(l-1)+m*(i-1)+1, n*m*(l-1)+m*(i-1)+2) = 1/dy;
+            
+            b(n*m*(l-1)+m*(i-1)+m) = G4(x(i));
+            a(n*m*(l-1)+m*(i-1)+m, n*m*(l-1)+m*(i-1)+m) = 1/dy;
+            a(n*m*(l-1)+m*(i-1)+m, n*m*(l-1)+m*(i-1)+m-1) = -1/dy;
+        end
     end
-end
 
 % Определение коэффициентов и свободных членов СЛАУ, соответствующих внутренним точкам области
-for (l = 2:s)
-    for (i = 2:n-1)
-        for (j = 2:m-1)
-            a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-1)+j) = +R(x(i),y(j))*C(x(i),y(j))/dt + (K(x(i),y(j))+K(x(i-1),y(j)))/dx^2 + (K(x(i),y(j))+K(x(i),y(j-1)))/dy^2;
-            a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*i+j) = -K(x(i),y(j))/dx^2;
-            a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-2)+j) = -K(x(i-1),y(j))/dx^2;
-            a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-1)+j+1) = -K(x(i),y(j))/dy^2;
-            a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-1)+j-1) = -K(x(i),y(j-1))/dy^2;
-            a(n*m*(l-1)+m*(i-1)+j, n*m*(l-2)+m*(i-1)+j) = -R(x(i),y(j))*C(x(i),y(j))/dt;
-            b(n*m*(l-1)+m*(i-1)+j) = F(x(i),y(j));
+    for (l = 2:s)
+        for (i = 2:n-1)
+            for (j = 2:m-1)
+                a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-1)+j) = +R(x(i),y(j))*C(x(i),y(j))/dt + (K(x(i),y(j))+K(x(i-1),y(j)))/dx^2 + (K(x(i),y(j))+K(x(i),y(j-1)))/dy^2;
+                a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*i+j) = -K(x(i),y(j))/dx^2;
+                a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-2)+j) = -K(x(i-1),y(j))/dx^2;
+                a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-1)+j+1) = -K(x(i),y(j))/dy^2;
+                a(n*m*(l-1)+m*(i-1)+j, n*m*(l-1)+m*(i-1)+j-1) = -K(x(i),y(j-1))/dy^2;
+                a(n*m*(l-1)+m*(i-1)+j, n*m*(l-2)+m*(i-1)+j) = -R(x(i),y(j))*C(x(i),y(j))/dt;
+                b(n*m*(l-1)+m*(i-1)+j) = F(x(i),y(j));
+            end
         end
     end
-end
 
-% Решение СЛАУ
-u = b/a';
-% Преобразование вектора-строки значений искомой функции в узлах координатной сетки в матрицу размерностью n x m, удобную для представления результатов в графическом виде
-for (l = 1:s)
-    for (i = 1:n)
-        for (j = 1:m)
-            T(i,j,l) = u(n*m*(l-1)+m*(i-1)+j);
+    % Решение СЛАУ
+    u = b/a';
+    % Преобразование вектора-строки значений искомой функции в узлах координатной сетки в матрицу размерностью n x m, удобную для представления результатов в графическом виде
+    for (l = 1:s)
+        for (i = 1:n)
+            for (j = 1:m)
+                T(i,j,l) = u(n*m*(l-1)+m*(i-1)+j);
+            end
         end
     end
-end
 
-% Построение графиков искомой функции T(x, y, t)
-for (l = 1:s)
+    % Построение графиков искомой функции T(x, y, t)
+    for (l = 1:s)
+        figure
+        surf(y,x,T(:,:,l))
+        xlabel('y, м')
+        ylabel('x, м')
+        zlabel('T, K')
+        grid on
+        colormap('cool')
+        axis([min(y), max(y), min(x), max(x), min(min(T(:,:,1))), max(max(T(:,:,1)))])
+        pause(0.1)
+        M(l) = getframe;
+    end
+
     figure
-    surf(y,x,T(:,:,l))
-    xlabel('y, м')
-    ylabel('x, м')
-    zlabel('T, K')
-    grid on
-    colormap('cool')
-    axis([min(y), max(y), min(x), max(x), min(min(T(:,:,1))), max(max(T(:,:,1)))])
-    pause(0.1)
-    M(l) = getframe;
+    movie(M,10,3)
 end
-
-figure
-movie(M,10,3)
