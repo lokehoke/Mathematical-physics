@@ -6,6 +6,34 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage{alltt}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Octave,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
 \begin{document}
 
 \begin{center}
@@ -498,49 +526,92 @@ $$\lambda_1(\omega) = \lambda_2(\omega) = 1$$
 
 Возьмем следующие параметры:
 \begin{itemize}
-    \item Линейная плотность: $\rho_l=0.04$ (кг/м)
-    \item Точка приложения силы: $x_0=0.5$ (м)
-    \item Характерная ширина распределения: $\gamma=2.5$ (м)
-    \item Амплитуда: $a=1$
+    \item Точка приложения силы: $ x_0 = 0.5 $ (м)
+    \item Линейная плотность: $ \rho_l = 0.05 $ (кг/м)
+    \item Характерная ширина распределения: $ \gamma = 2.5 $ (м)
+    \item Амплитуда: $ a = 0.5 $
 \end{itemize}
 
-Тогда  наша функция $f(t,x)$ будет иметь вид:
+Тогда  наша функция $ f(t,x) $ будет иметь вид:
 
-$$f(t,x)={1 \over 0.04}{1 \over (x-0.5)^2  +1}={25 \over x^2-x+0.25+1}={25 \over x^2-x+1.25}$$
+$$
+    f(t,x) = 0.5 e^{-\frac{(x - 0.5)^2}{2.5^2}}
+$$
 
 Граничные условия:
 
 \begin{itemize}
-    \item $U(t,0)=0$
-    \item $U(t,l)=0$
+    \item $ U(t, 0) = 0 $
+    \item $ U(t, l) = 0 $
 \end{itemize}
 
 Начальные условия:
 
 \begin{itemize}
-    \item $U(0,x)=\sin{\pi x}$
-    \item $U'_t(0,x)=0$
+    \item $ U(0, x) = \sin{\pi x} $
+    \item $ U'_t(0, x) = 0 $
 \end{itemize}
 
 \newpage
 
 Используем схему "Крест": \\
 
-\includegraphics[width=15cm]{img/3.jpg}
+\lstinputlisting{code/string.m}
 
 \newpage
 
 Результат:
 
-\includegraphics{img/1_1.jpg}
+\begin{figure}[h]
+    \begin{center}
+    \begin{minipage}[h]{0.4\linewidth}
+    \includegraphics[width=1\linewidth]{img/result_1.png}
+    \caption{} %% подпись к рисунку
+    \label{ris:experimoriginal}
+    \end{minipage}
+    \end{center}
+\end{figure}
 
-\includegraphics{img/1_2.jpg}
+\begin{figure}[h]
+    \begin{center}
+    \begin{minipage}[h]{0.4\linewidth}
+    \includegraphics[width=1\linewidth]{img/result_2.png}
+    \caption{} %% подпись к рисунку
+    \label{ris:experimoriginal}
+    \end{minipage}
+    \end{center}
+\end{figure}
 
-\includegraphics{img/1_3.jpg}
+\begin{figure}[]
+    \begin{center}
+    \begin{minipage}[h]{0.4\linewidth}
+    \includegraphics[width=1\linewidth]{img/result_3.png}
+    \caption{} %% подпись к рисунку
+    \label{ris:experimoriginal}
+    \end{minipage}
+    \end{center}
+\end{figure}
 
-\includegraphics{img/1_4.jpg}
+\begin{figure}[]
+    \begin{center}
+    \begin{minipage}[h]{0.4\linewidth}
+    \includegraphics[width=1\linewidth]{img/result_4.png}
+    \caption{} %% подпись к рисунку
+    \label{ris:experimoriginal}
+    \end{minipage}
+    \end{center}
+\end{figure}
 
-\newpage
+\begin{figure}[]
+    \begin{center}
+    \begin{minipage}[h]{0.4\linewidth}
+    \includegraphics[width=1\linewidth]{img/result_5.png}
+    \caption{} %% подпись к рисунку
+    \label{ris:experimoriginal}
+    \end{minipage}
+    \end{center}
+\end{figure}
+
 
 
 
